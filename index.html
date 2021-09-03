@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="./logo.png"/>
+    <link rel="stylesheet" href="./style.css">
+    <title>Pomodoro</title>
+</head>
+
+<body>
+
+    <div style="opacity: 0;z-index: -23423432;" class="settingparent">
+
+        <div class="setting_box">
+            <div class="setting_heading">
+        
+                <h1>SETTING</h1>
+            </div>
+        
+            <div class="setting_time_head">
+        <div id="std1" class="setting_time_div">
+            
+            <input id="setting_pomodoro_minutes"  min="0" oninput="validity.valid||(value='');" type="number" value='27' class="setting_time">
+        </div>
+        <div id="std2" class="setting_time_div">
+            <input  id="setting_short_break_minutes"  min="0" oninput="validity.valid||(value='');" type="number" value='6' class="setting_time">
+        </div>
+        <div  id="std3" class="setting_time_div">
+            <input id="setting_long_break_minutes"  min="0" oninput="validity.valid||(value='');" type="number" value='15' class="setting_time">
+        </div>
+            </div>
+        <button id="settingbtn" >
+            OK
+        </button>
+        </div>
+        </div>
+        
+
+
+
+
+
+
+
+    <div class="container">
+      <span id="setting">
+          <img src="./icons8-settings.svg" alt="">
+      </span>
+
+
+        <div class="inner">
+
+<div class="header">
+    <h2 id="pomodor_header_heading" class="  heading">Pomodoro</h2>
+    <h2 id="short_header_heading" class=" bgnone heading">Short Break</h2>
+    <h2 id="long_header_heading" class=" bgnone heading">Long Break</h2>
+    
+</div>
+
+<div class="body">
+
+
+            <div class="  _3div" id="pomodoro">
+<div class="timer">
+    <span  id="pomodoro_min" class="min"></span>
+    <span  class="colon">:</span>
+    <span id="pomodoro_sec"  class="sec">00</span>
+</div>
+
+                <button id="pomodoro_button" class="btn">START</button>
+            </div>
+
+
+            <div class=" dnone _3div" id="short_break">
+                <div class="timer">
+                    <span  id="s_break_min" class="min"></span>
+                    <span  class="colon">:</span>
+                    <span id="s_break_sec"  class="sec">00</span>
+                </div>
+                <button id="short_break_btn" class="btn">START</button>
+            </div>
+
+
+            <div class=" dnone _3div" id="long_break">
+                <div class="timer">
+                    <span  id="l_break_min" class="min"></span>
+                    <span  class="colon">:</span>
+                    <span id="l_break_sec"  class="sec">00</span>
+                </div>
+                <button id="l_break_btn" class="btn">START</button>
+            </div>
+</div>
+
+
+        </div>
+    </div>
+
+<script src="./script.js"></script>
+</body>
+
+</html>

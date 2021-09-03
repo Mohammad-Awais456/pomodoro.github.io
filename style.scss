@@ -1,0 +1,254 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+
+}
+html,body{
+overflow-x: hidden;
+max-width: 100%;
+height: 100%;
+}
+
+#setting img{
+    width: 30px;
+}
+#setting{
+    position: absolute;
+    top: 2%;
+    right: 1%;
+}
+
+#setting img:hover{
+    transform: scale(1.2);
+}
+#setting:hover{
+    cursor: pointer;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(#de3535, #071e27);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.inner{
+    width: 500px;
+    height: 400px;
+    background-color: rgba(56, 32, 32, 0.192);
+position: relative;
+padding: 24px;
+}
+._3div{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+}
+
+.heading:hover,.btn:hover{
+    cursor: pointer;
+}
+.heading:hover{
+    transform: scale(1.1);
+}
+.heading{
+    position: relative;
+    margin: auto 10px;
+    color: white;
+    font-size: 20px;
+    padding: 8px 10px;
+    -webkit-transition: 0.8s;
+    transition: 0.8s;
+    background-color: rgba(0, 0, 0, 0.144);
+}
+.bgnone{
+    background: none !important;
+}
+.body{
+    position: relative;
+    width: 100%;
+    height: 90%;
+}
+.timer{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    top: 0%;
+
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.151);
+    transition: 0.8s;
+z-index: -1;
+}
+.btn:hover::after{
+    height: 100%;
+
+}
+
+.btn{
+    position: relative;
+    width: 49%;
+    height: 20%;
+    font-size: 36px;
+    padding: 10px 20px;
+    margin: auto;
+    display: block;
+    border: none;
+    outline: none;
+    background: #00000011;
+z-index: 2;
+    color: white;
+    
+}
+.min,.sec,.colon{
+font-size: 150px;
+color: white;
+
+}
+::selection { background: transparent; }
+::-moz-selection { background: transparent; }
+// **************************************************
+// setting box
+.setting_box{
+position: absolute;
+z-index: 23;
+background: radial-gradient(#331e1e, #001d1f);
+top: -500%;
+transition: 0.6s;
+left: 50%;
+transform: translate(-50%,-50%);
+width: 400px;
+height: 300px;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 10px 5px;
+flex-direction: column;
+}
+
+.setting_heading h1{
+    font-size: 27px;
+    color: white;
+
+}
+.setting_heading{
+width: 100%;
+height: 20%;
+font-size: 27px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-bottom: 1px solid #ececec29;
+}
+.setting_time_head{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.setting_time{
+    width: 100px;
+    height: auto;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.11);
+    color: white;
+    border: none;
+    outline: none;
+    margin: 0px 10px;
+    padding: 5px;
+}
+#settingbtn:hover{
+    cursor: pointer;
+}
+#settingbtn{
+ 
+ position: relative;
+    width: 36%;
+    // height: 20%;
+    // font-size: 36px;
+    // padding: 10px 20px;
+    margin: auto;
+    display: block;
+    border: none;
+    outline: none;
+    background: #00000045;
+
+    color: white;
+    height: auto;
+    font-size: 36px;
+    padding: 4px 20px;
+}
+
+
+.setting_time_div{
+    position: relative;
+}
+
+#std1::after{
+
+    content: "Pomodoro";
+}
+#std2::after{
+
+    content: "Short Break";
+}
+#std3::after{
+
+    content: "Long Break";
+}
+
+.setting_time_div::after{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: -100%;
+    left: 0%;
+    color: white;
+font-size: 16px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+.setting_time::placeholder{
+    color: white ;
+}
+.settingparent{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 2343;
+    background-color: rgba(0, 0, 0, 0.897);
+}
+
+
+.dnone{
+    display: none;
+}
+// setting box ending
