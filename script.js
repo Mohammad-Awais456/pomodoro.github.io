@@ -140,7 +140,7 @@ setting_garai_icon_btn.addEventListener('click', () => {
 
 //common functions 
 function fantasy_sound() {
-    var audio = new Audio('./sound/fantasy.wav');
+    var audio = new Audio('./sound/parasite.mp3');
     audio.play();
   
 }
@@ -412,7 +412,7 @@ if((condition==true)||(sec==60))
     long_break.classList.add('dnone');
 
 
-    container.style.cssText = '      background: radial-gradient(#de3535, #071e27);';
+    container.style.cssText = '    background: radial-gradient(#ff001dfc, black);';
 
     //short braeak
     show_time(Short_break_total_min,Short_break_obj.s_break_min)
@@ -446,7 +446,7 @@ if((condition==true)||(sec==60))
     v[0].classList.add('bgnone');
     v[2].classList.add('bgnone');
 
-    container.style.cssText = '  background: radial-gradient(rgb(112 115 121), #00bcd4);';
+    container.style.cssText = '     background: radial-gradient(rgb(255, 58, 58), rgb(130, 45, 38));';
     pomodoro.classList.add('dnone');
     short_break.classList.remove('dnone');
     long_break.classList.add('dnone');

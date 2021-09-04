@@ -23,13 +23,13 @@
             <div class="setting_time_head">
         <div id="std1" class="setting_time_div">
             
-            <input id="setting_pomodoro_minutes"  min="0" oninput="validity.valid||(value='');" type="number" value='27' class="setting_time">
+            <input id="setting_pomodoro_minutes" max="60" min="1" oninput="validity.valid||(value='');" type="number" value='27' class="setting_time">
         </div>
         <div id="std2" class="setting_time_div">
-            <input  id="setting_short_break_minutes"  min="0" oninput="validity.valid||(value='');" type="number" value='6' class="setting_time">
+            <input  id="setting_short_break_minutes"  max="10" min="1" oninput="validity.valid||(value='');" type="number" value='6' class="setting_time">
         </div>
         <div  id="std3" class="setting_time_div">
-            <input id="setting_long_break_minutes"  min="0" oninput="validity.valid||(value='');" type="number" value='15' class="setting_time">
+            <input id="setting_long_break_minutes"  min="1" max="60" oninput="validity.valid||(value='');" type="number" value='15' class="setting_time">
         </div>
             </div>
         <button id="settingbtn" >
