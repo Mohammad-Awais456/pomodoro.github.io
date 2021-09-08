@@ -3,12 +3,14 @@ let timer_data=0;
 let temp_sec=60;
 let worker_object;
 // Global variables 
-
+onselectstart="return false;";
 // variables setting box
 let setting_parent = document.querySelector(".settingparent");
 let gare_icon = document.querySelector("#setting");
 let setting_box = document.querySelector(".setting_box");
 let settingbtn = document.querySelector("#settingbtn");
+let close = document.querySelector("#close");
+let reload_page = document.querySelector("#reload_page");
 
 
 let setting_pomodoro_minutes = document.querySelector("#setting_pomodoro_minutes");
@@ -28,6 +30,19 @@ timer_data=array_timer_data;
 
 
 // variables setting box
+
+
+// variables short and long breaks
+
+let start_break_button = document.querySelector("#start_break_button");
+let cancel_break_button = document.querySelector("#cancel_break_button");
+let Breaks_div = document.querySelector(".Breaks");
+let breaks_inside = document.querySelector(".breaks_inside");
+
+// variables short and long breaks
+
+
+
 // variables timer
 
 let main_button = document.querySelector("#pomodoro_button");
@@ -43,6 +58,14 @@ let pomodoro_sec_div = document.querySelector("#pomodoro_sec");
 gare_icon.addEventListener("click",display_setting_box);
 settingbtn.addEventListener("click",hide_setting_box);
 main_button.addEventListener("click",admin);
+cancel_break_button.addEventListener("click",breaks_div_cancel_btn);
+start_break_button.addEventListener("click",breaks_div_start_btn);
+
+close.addEventListener("click",close_setting_div);
+reload_page.addEventListener("click",()=>{
+
+    history.go();
+});
 
 
 //        event lisner 
@@ -51,7 +74,34 @@ main_button.addEventListener("click",admin);
 
 
 // functions 
+function close_setting_div(){
+    setting_box.style.cssText="top:-500%;transition:3s";
+    setTimeout(opacity_hider, 1000);
 
+}
+//............................................
+
+function breaks_div_display()
+{
+    // setTimeout(opacity_hider_for_breaks_div, 1000);
+   
+    Breaks_div.style.cssText="opacity:1; z-index: 32423432434234;;transition:2s";
+
+
+}
+//......................................
+
+function breaks_div_start_btn(){
+click_sound();
+setTimeout(opacity_hider_for_breaks_div, 50);
+
+}
+
+function breaks_div_cancel_btn(){
+click_sound();
+setTimeout(opacity_hider_for_breaks_div, 10);
+
+}
 // ....................................
 function sound_time_over()
 {
@@ -84,6 +134,8 @@ localStorage.setItem("timer_data",array_timer_data);
 
 function display_setting_box()
 {
+// breaks_div_display();
+
     setting_parent.style.cssText="opacity:1;";
     setting_box.style.cssText="top:50%;";
 
@@ -92,6 +144,11 @@ function display_setting_box()
 function opacity_hider()
 {
     setting_parent.style.cssText="opacity:0;z-index: -23423432;transition:3s";
+    
+}
+function opacity_hider_for_breaks_div()
+{
+    Breaks_div.style.cssText="opacity:0;z-index: -23423432;transition:2s";
     
 }
 
@@ -136,9 +193,8 @@ update_timer();
 
 function hide_setting_box()
 {
-    setting_box.style.cssText="top:-500%;transition:3s";
+    close_setting_div();
 
-    setTimeout(opacity_hider, 1000);
 
     
     setlocal_storage_data();

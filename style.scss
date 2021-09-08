@@ -256,3 +256,111 @@ align-items: center;
     display: none;
 }
 // setting box ending
+
+
+
+
+.Breaks{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: -32423432434234;
+    background-color: rgba(0, 0, 0, 0.973);
+position: absolute;
+top: 0;
+left: 0;
+transition: 2s;
+opacity: 0;
+
+}
+.breaks_inside{
+    width: 50%;
+    height: 400px;
+padding: 28px;
+transition: 2s;
+box-shadow: 1px 2px 30px #131111, inset 1px 0px 40px #0e0c0c;
+background: radial-gradient(#ff0028, #000000);
+}
+#close:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+#reload_page:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+#reload_page{
+    position: absolute;
+    left: 1%;
+    top: 2%;
+    font-size: 20px;
+    color: white;
+}
+
+#close{
+    font-size: 25px;
+    color: white;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 2;
+}
+
+.breaks_heading{
+    width: 100%;
+    height: 20%;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.breaks_heading h1{
+
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-bottom: 1px solid white;
+}
+.value{
+    width: 100%;
+    height: 60%;
+    font-size: 129px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.breaks_buttons{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.breaks_i_tag{
+    color: white;
+    font-size: 43px;
+    width: auto;
+    height: auto;
+    padding: 7px 33px;
+    background: #00000000;
+    width: auto;
+    margin: 0px 16px;
+    -webkit-box-shadow: 1px 2px 14px #000000, inset 1px 0px 18px #ffffff;
+    box-shadow: 1px 2px 14px #000000, inset 1px 0px 18px #171717;
+    border-radius: 10px;
+    -webkit-transition: 0.7s;
+    transition: 0.7s;
+
+    &:hover{
+transform: scale(1.1);
+        cursor: pointer;
+    }
+}
