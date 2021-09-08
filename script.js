@@ -1,514 +1,211 @@
+// Global variables 
+let timer_data=0;
+let temp_sec=60;
+let worker_object;
+// Global variables 
+
+// variables setting box
 let setting_parent = document.querySelector(".settingparent");
-let setting_garai_icon_btn = document.querySelector("#setting");
-let heading = document.querySelectorAll(".heading");
+let gare_icon = document.querySelector("#setting");
 let setting_box = document.querySelector(".setting_box");
-let container = document.querySelector(".container");
-let settingbtn = document.getElementById("settingbtn");
-let pomodoro = document.getElementById("pomodoro");
-let short_break = document.getElementById("short_break");
-let long_break = document.getElementById("long_break");
-window.long_internal=null;
-window.short_break_internal=null;
-window.pomo_internal=null;
+let settingbtn = document.querySelector("#settingbtn");
 
 
-onselectstart="return false;";
-// ............................................................................ 
-// pomodoro div variables 
-
-let pomodoro_button = document.getElementById("pomodoro_button");
-
-
-const pomo_obj = {
-    pomodoro_min_div: document.getElementById("pomodoro_min"),
-    pomodoro_sec_div: document.getElementById("pomodoro_sec")
-}
-const sec_60=60;
-let sec = sec_60;
-
-
-// pomodoro div variables 
-// Short_brak div variables 
-
-let short_break_btn = document.getElementById("short_break_btn");
-
-
-const Short_break_obj = {
-    s_break_min: document.getElementById("s_break_min"),
-    s_break_sec: document.getElementById("s_break_sec")
-}
+let setting_pomodoro_minutes = document.querySelector("#setting_pomodoro_minutes");
+let setting_short_break_minutes = document.querySelector("#setting_short_break_minutes");
+let setting_long_break_minutes = document.querySelector("#setting_long_break_minutes");
 
 
 
+let total_min=+(setting_pomodoro_minutes.value);
+let  short_break=+(setting_short_break_minutes.value);
+let  long_break=+(setting_long_break_minutes.value);
 
-// Short_brak div variables 
+let array_timer_data=[total_min,short_break,long_break];
+
+timer_data=array_timer_data;
 
 
-// l_break_ div variables 
 
-let l_break_btn = document.getElementById("l_break_btn");
+// variables setting box
+// variables timer
+
+let main_button = document.querySelector("#pomodoro_button");
+let pomodoro_min_div = document.querySelector("#pomodoro_min");
+let pomodoro_sec_div = document.querySelector("#pomodoro_sec");
 
 
-const l_break_obj = {
-    l_break_min: document.getElementById("l_break_min"),
-    l_break_sec: document.getElementById("l_break_sec")
-}
+
+// variables timer
+// variables 
+
+//        event lisner 
+gare_icon.addEventListener("click",display_setting_box);
+settingbtn.addEventListener("click",hide_setting_box);
+main_button.addEventListener("click",admin);
+
+
+//        event lisner 
 
 
 
 
-// l_break_ div variables 
-// ***************************************************
-function data_updater() {
+// functions 
 
-
-let data=localStorage.getItem("pomodoro_data");
-data=JSON.parse(data);
-if(data!=null)
+// ....................................
+function sound_time_over()
 {
-
-    // l_break_obj.l_break_min.innerHTML=data[2];
-    // pomo_obj.pomodoro_min_div.innerHTML=data[0];
-    // Short_break_obj.s_break_min.innerHTML=data[1];
-
-    show_time(data[0], pomo_obj.pomodoro_min_div);
-    show_time(data[1], Short_break_obj.s_break_min);
-    show_time(data[2], l_break_obj.l_break_min);
-   
-}
-else
-{
-    l_break_obj.l_break_min.innerHTML="15";
-    pomo_obj.pomodoro_min_div.innerHTML="27";
-    Short_break_obj.s_break_min.innerHTML="06";
-
-    console.log("call me ");
-   
-
-}
-
-   
-    
-}
-data_updater();
-
-// temp variables 
-let l_break_total_min=+(l_break_obj.l_break_min.innerHTML);
-let l_temp_min=l_break_total_min-1;
-
-let Short_break_total_min=+(Short_break_obj.s_break_min.innerHTML);
-let Short_temp_min=Short_break_total_min-1;
-
-
-let pomo_total_min=+(pomo_obj.pomodoro_min_div.innerHTML);
-let pomo_temp_min=pomo_total_min-1;
-// temp variables 
-
-
-// display box script 
-
-//variables
-let setting_pomodoro_minutes=document.getElementById('setting_pomodoro_minutes');
-let setting_short_break_minutes=document.getElementById('setting_short_break_minutes');
-let setting_long_break_minutes=document.getElementById('setting_long_break_minutes');
-//variables
-
-
-settingbtn.addEventListener('click', () => {
-
-    setting_parent.style.cssText = 'opacity:0;z-index: -23423432;transition:2s';
-
-    setting_box.style.cssText = 'top:-50%;';
-    let pomo_min=+(setting_pomodoro_minutes.value);
-    let short_setting_min=+(setting_short_break_minutes.value);
-    let long_setting_min=+(setting_long_break_minutes.value);
-    let arr_setting=[pomo_min,short_setting_min,long_setting_min];
-    arr_setting=JSON.stringify(arr_setting);
-    localStorage.setItem("pomodoro_data",arr_setting);
-// localStorage.removeItem("pomodoro_data");
-// data_updater();
-// window.location.reload(true);
-history.go()
-});
-setting_garai_icon_btn.addEventListener('click', () => {
-
-    setting_parent.style.cssText = 'opacity:1;z-index: 23423432;';
-
-    setting_box.style.cssText = 'top:50%;';
-
-});
-
-//common functions 
-function fantasy_sound() {
     var audio = new Audio('./sound/parasite.mp3');
     audio.play();
-  
 }
+
 function click_sound() {
     var audio = new Audio('./sound/button.wav');
     audio.play();
 
 }
-// function fantasy_sound() {
-//     var audio = new Audio('./sound/fantasy.wav');
-//     audio.play();
+// ....................................
 
-// }
-
-//****************************************************
-function show_time(time, obj) {
-
-    if (time < 10) {
-        obj.innerHTML = "0" + time;
-    }
-
-    else 
-     {
-        obj.innerHTML = time;
-    }
-
-
-}
-//****************************************************
-//common functions 
-// function only one time call in starting 
-// show_time(sec,pomo_obj.pomodoro_sec_div);
-// show_time(pomo_total_min,pomo_obj.pomodoro_min_div);
-
-// function only one time call in starting 
-
-//tabs script is ending ...............................
-
-// script for pomodoro tab ( counting script ) 
-pomodoro_button.addEventListener("click", () => {
-
-    // click_sound();
-
-    if (pomodoro_button.innerHTML == "START")
-     {
-
-         click_sound();
-        pomodoro_button.innerHTML = "STOP";
-
-        // intervals starting here...........................
-        
-        pomo_internal=setInterval(() => {
-            sec=sec-1;
-            show_time(sec,pomo_obj.pomodoro_sec_div);
-            console.log(sec);
-            if(sec!=0)
-            {
-             
-                 
-                    show_time(pomo_temp_min,pomo_obj.pomodoro_min_div);   
-
-            }
-            if(sec===0)
-            {
-                sec=sec_60;
-                pomo_temp_min=pomo_temp_min-1;
-                window.pomosettimeout=setTimeout(() => {
-                    
-                    show_time(pomo_temp_min,pomo_obj.pomodoro_min_div);   
-
-                }, 1000);         
-                
-            }
-            if(pomo_temp_min==-1){
-                // console.log(pomo_temp_min);
-                // show_time(pomo_total_min,pomo_obj.pomodoro_min_div)
-                clearTimeout(pomosettimeout);
-                data_updater();
-                show_time(0,pomo_obj.pomodoro_sec_div);
-                pomo_temp_min=pomo_total_min-1;
-                clearInterval(pomo_internal);
-fantasy_sound(); 
-
-        pomodoro_button.innerHTML = "START";
-        sec = sec_60;
-
-            }
-            
-          
-            
-        }, 1000);
-        
-        // intervals Ending here...........................
-    }
-    else 
-    {
-        clearInterval(pomo_internal);
-        click_sound();
-
-        pomodoro_button.innerHTML = "START";
-    }
-
-});
-// script for ShortBreak tab ( counting script )  ending..............................
-
-short_break_btn.addEventListener("click", () => {
-
-    // click_sound();
-
-    if (short_break_btn.innerHTML == "START")
-     {
-         click_sound();
-         short_break_btn.innerHTML = "STOP";
-
-        // intervals starting here...........................
-        
-        short_break_internal=setInterval(() => {
-            sec=sec-1;
-            show_time(sec,Short_break_obj.s_break_sec);
-            console.log(sec);
-            if(sec!=0)
-            {
-             
-                 
-                    show_time(Short_temp_min,Short_break_obj.s_break_min);   
-
-            }
-            if(sec===0)
-            {
-                sec=sec_60;
-                Short_temp_min=Short_temp_min-1;
-                window.sbreak_settimeout=setTimeout(() => {
-                    
-                    show_time(Short_temp_min,Short_break_obj.s_break_min);   
-
-                }, 1000);         
-                
-            }
-            if(Short_temp_min==-1){
-                // console.log(Short_temp_min);
-                // show_time(Short_break_total_min,Short_break_obj.s_break_min)
-                clearTimeout(sbreak_settimeout);
-                data_updater();
-           
-                show_time(0,Short_break_obj.s_break_sec);
-                Short_temp_min=Short_break_total_min-1;
-                clearInterval(short_break_internal);
-                fantasy_sound(); 
-
-                short_break_btn.innerHTML = "START";
-                sec = sec_60;
-            }
-            
-          
-            
-        }, 1000);
-        
-        // intervals Ending here...........................
-    }
-    else 
-    {
-        clearInterval(short_break_internal);
-        click_sound();
-
-        short_break_btn.innerHTML = "START";
-    }
-
-});
-// script for ShortBreak tab ( counting script )  ending..............................
-// script for pomodoro tab ( counting script ) 
-l_break_btn.addEventListener("click", () => {
-
-    // click_sound();
-
-    if (l_break_btn.innerHTML == "START")
-     {
-         click_sound();
-         l_break_btn.innerHTML = "STOP";
-
-        // intervals starting here...........................
-        
-        long_internal=setInterval(() => {
-            sec=sec-1;
-            show_time(sec,l_break_obj.l_break_sec);
-            console.log(sec);
-            if(sec!=0)
-            {
-             
-                 
-                    show_time(l_temp_min,l_break_obj.l_break_min);   
-
-            }
-            if(sec===0)
-            {
-                sec=sec_60;
-                l_temp_min=l_temp_min-1;
-                window.lsettimeout=setTimeout(() => {
-                    
-                    show_time(l_temp_min,l_break_obj.l_break_min);   
-
-                }, 1000);         
-                
-            }
-            if(l_temp_min==-1){
-                // console.log(pomo_temp_min);
-                // show_time(l_break_total_min,l_break_obj.l_break_min)
-                clearTimeout(lsettimeout);                
-                show_time(0,l_break_obj.l_break_sec);
-                l_temp_min=l_break_total_min-1;
-                clearInterval(long_internal);
-                
-                data_updater();
-                fantasy_sound();     
-                    
-               
-                l_break_btn.innerHTML = "START";
-                sec = sec_60;
-            }
-            
-          
-            
-        }, 1000);
-        
-        // intervals Ending here...........................
-    }
-    else 
-    {
-        clearInterval(long_internal);
-        click_sound();
-
-        l_break_btn.innerHTML = "START";
-    }
-
-});
-// script for ShortBreak tab ( counting script )  ending..............................
-// ***************************************************
-// tab changing script 
-//header variables
-let pomodor_header_heading=document.getElementById("pomodor_header_heading");
-let short_header_heading=document.getElementById("short_header_heading");
-let long_header_heading=document.getElementById("long_header_heading");
-let v=[pomodor_header_heading,short_header_heading,long_header_heading];
-//header variables
-
-function tab_changing_manager()
+function setlocal_storage_data()
 {
-    let conf=confirm("Do you realy want to change the tab....!\nProgress of current Tab will be lost...!");
-return conf;
+// store date in localstorage.
+
+total_min=+(setting_pomodoro_minutes.value);
+ short_break=+(setting_short_break_minutes.value);
+ long_break=+(setting_long_break_minutes.value);
+
+array_timer_data=[total_min,short_break,long_break];
+
+array_timer_data=JSON.stringify(array_timer_data);
+
+localStorage.setItem("timer_data",array_timer_data);
 }
 
-let condition=false;
 
-v[0].addEventListener('click',()=>{
-    if(sec!=60){
-
-         condition=tab_changing_manager();
-    }
-if((condition==true)||(sec==60))
+function display_setting_box()
 {
-   
-
-    v[0].classList.remove('bgnone');
-    v[1].classList.add('bgnone');
-    v[2].classList.add('bgnone');
-
-
-    pomodoro.classList.remove('dnone');
-    short_break.classList.add('dnone');
-    long_break.classList.add('dnone');
-
-
-    container.style.cssText = '    background: radial-gradient(#ff001dfc, black);';
-
-    //short braeak
-    show_time(Short_break_total_min,Short_break_obj.s_break_min)
-    show_time(0,Short_break_obj.s_break_sec)
-    Short_temp_min=Short_break_total_min-1;
-    clearInterval(short_break_internal);
-    short_break_btn.innerHTML = "START";
-    //short braeak
-    sec=sec_60;
-    //long braeak
-    show_time(l_break_total_min,l_break_obj.l_break_min)
-    show_time(0,l_break_obj.l_break_sec)
-    l_temp_min=l_break_total_min-1;
-    clearInterval(long_internal);
-    l_break_btn.innerHTML = "START";
-   
+    setting_parent.style.cssText="opacity:1;";
+    setting_box.style.cssText="top:50%;";
 
 }
-});
-
-
-v[1].addEventListener('click', () => {
-    if(sec!=60){
-
-        condition=tab_changing_manager();
-   }
-if((condition==true)||(sec==60))
+//.......................................
+function opacity_hider()
 {
-
-    v[1].classList.remove('bgnone');
-    v[0].classList.add('bgnone');
-    v[2].classList.add('bgnone');
-
-    container.style.cssText = '     background: radial-gradient(rgb(255, 58, 58), rgb(130, 45, 38));';
-    pomodoro.classList.add('dnone');
-    short_break.classList.remove('dnone');
-    long_break.classList.add('dnone');
-    sec=sec_60;
-    //long braeak
-    show_time(l_break_total_min,l_break_obj.l_break_min)
-    show_time(0,l_break_obj.l_break_sec)
-    l_temp_min=l_break_total_min-1;
-    clearInterval(long_internal);
-    l_break_btn.innerHTML = "START";
-    //pomodoro
-    show_time(pomo_total_min,pomo_obj.pomodoro_min_div)
-                show_time(0,pomo_obj.pomodoro_sec_div)
-                pomo_temp_min=pomo_total_min-1;
-                clearInterval(pomo_internal);
-        pomodoro_button.innerHTML = "START";
-    //pomodoro
-   
-}
-
-});
-
-
-v[2].addEventListener('click', () => {
-
-
-    if(sec!=60){
-
-        condition=tab_changing_manager();
-   }
-if((condition==true)||(sec==60))
-    {
-
-        container.style.cssText = '      background: radial-gradient(#4caf50, rgb(40, 15, 88));';
-
-        v[2].classList.remove('bgnone');
-        v[0].classList.add('bgnone');
-        v[1].classList.add('bgnone');
+    setting_parent.style.cssText="opacity:0;z-index: -23423432;transition:3s";
     
-    
-        pomodoro.classList.add('dnone');
-        short_break.classList.add('dnone');
-        long_break.classList.remove('dnone');
-         //pomodoro
-    show_time(pomo_total_min,pomo_obj.pomodoro_min_div)
-    show_time(0,pomo_obj.pomodoro_sec_div)
-    pomo_temp_min=pomo_total_min-1;
-    clearInterval(pomo_internal);
-pomodoro_button.innerHTML = "START";
-//pomodoro
-sec=sec_60;
- //short braeak
- show_time(Short_break_total_min,Short_break_obj.s_break_min)
- show_time(0,Short_break_obj.s_break_sec)
- Short_temp_min=Short_break_total_min-1;
- clearInterval(short_break_internal);
- short_break_btn.innerHTML = "START";
- //short braeak
+}
+
+//.......................................\ 
+function display_time(location,val)
+{
+    if(val<10)
+    {
+        location.innerHTML="0"+val;
     }
-  
- 
-});
+    else
+    {
+        location.innerHTML=val;
+
+    }
+}
+//.......................................\ 
+function update_timer()
+{
+    timer_data=localStorage.getItem("timer_data");
+    timer_data=JSON.parse(timer_data);
+    if(timer_data!=null)
+    {
+        display_time(pomodoro_min_div,timer_data[0]);
+        display_time(pomodoro_sec_div,0);
+        
+    }
+    else
+    {
+        display_time(pomodoro_min_div,27);
+        display_time(pomodoro_sec_div,0);
+
+    }
+
+    temp_sec=60;
+    stop_timer();
+    main_button.innerHTML="START";
+
+}
+update_timer();
+//.......................................\ 
+
+function hide_setting_box()
+{
+    setting_box.style.cssText="top:-500%;transition:3s";
+
+    setTimeout(opacity_hider, 1000);
+
+    
+    setlocal_storage_data();
+
+    update_timer();
+
+
+}
+
+//******************************** */
+function stop_timer()
+{
+    worker_object.terminate();
+    worker_object=undefined;
+}
+//******************************** */
+function start_timer()
+{
+    
+    worker_object= new Worker("count.js");
+
+    let send=[timer_data[0]-1,temp_sec];
+
+    worker_object.postMessage(send);
+    worker_object.onmessage=(e)=>{
+        temp_sec=e.data[1];
+        display_time(pomodoro_min_div,e.data[0]);
+        display_time(pomodoro_sec_div,e.data[1]);
+        if((e.data[0]== -1)&&(e.data[1]==0))
+        {
+            temp_sec=60;
+            update_timer();
+            sound_time_over();
+       stop_timer();
+        }
+
+
+    }
+
+}
+//******************************** */
+function admin()
+{
+    click_sound();
+
+    if(main_button.innerHTML=="START")
+    {
+        // alert("start");
+        main_button.innerHTML="STOP";
+        start_timer();
+
+
+
+    }
+    else
+    {
+        main_button.innerHTML="START";
+        stop_timer();
+        // alert("Stop");
+
+    }
+} // admin end..........................
+//******************************** */
+//******************************** */
+
+// functions 
+
 
 
 

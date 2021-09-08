@@ -76,7 +76,7 @@ html, body {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  height: 10%;
+  height: 20%;
 }
 
 .heading:hover, .btn:hover {
@@ -92,11 +92,11 @@ html, body {
   position: relative;
   margin: auto 10px;
   color: white;
-  font-size: 20px;
+  font-size: 39px;
   padding: 8px 10px;
   -webkit-transition: 0.8s;
   transition: 0.8s;
-  background-color: rgba(0, 0, 0, 0.144);
+  border-bottom: 1px solid #ffffff30;
 }
 
 .bgnone {
@@ -106,7 +106,7 @@ html, body {
 .body {
   position: relative;
   width: 100%;
-  height: 90%;
+  height: 80%;
 }
 
 .timer {
