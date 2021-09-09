@@ -1,5 +1,5 @@
 // Global variables 
-let timer_data=0;
+let timer_data=null;
 let temp_sec=60;
 let worker_object;
 let num=1;
@@ -121,7 +121,7 @@ function click_sound() {
 function setlocal_storage_data()
 {
 // store date in localstorage.
-
+num=1;
 total_min=+(setting_pomodoro_minutes.value);
  short_break=+(setting_short_break_minutes.value);
  long_break=+(setting_long_break_minutes.value);
@@ -188,7 +188,6 @@ function update_timer()
         display_time(pomodoro_sec_div,0);
         }, 1000);
         
-
     }
 
     temp_sec=60;
@@ -222,10 +221,18 @@ function stop_timer()
 //******************************** */
 function start_timer()
 {
+    let send;
     
     worker_object= new Worker("count.js");
+    console.log(timer_data);
+if(timer_data==null){
 
-    let send=[timer_data[0]-1,temp_sec];
+     send=[26,temp_sec];
+}else
+{
+     send=[timer_data[0]-1,temp_sec];
+
+}
 
     worker_object.postMessage(send);
     worker_object.onmessage=(e)=>{
