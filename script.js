@@ -2,6 +2,8 @@
 let timer_data=0;
 let temp_sec=60;
 let worker_object;
+let num=1;
+
 // Global variables 
 onselectstart="return false;";
 // variables setting box
@@ -172,14 +174,20 @@ function update_timer()
     timer_data=JSON.parse(timer_data);
     if(timer_data!=null)
     {
-        display_time(pomodoro_min_div,timer_data[0]);
-        display_time(pomodoro_sec_div,0);
+        setTimeout(() => {
+            display_time(pomodoro_min_div,timer_data[0]);
+            display_time(pomodoro_sec_div,0);
+        }, 1000);
+      
         
     }
     else
     {
-        display_time(pomodoro_min_div,27);
+        setTimeout(() => {
+            display_time(pomodoro_min_div,27);
         display_time(pomodoro_sec_div,0);
+        }, 1000);
+        
 
     }
 
@@ -209,6 +217,7 @@ function stop_timer()
 {
     worker_object.terminate();
     worker_object=undefined;
+   
 }
 //******************************** */
 function start_timer()
@@ -221,15 +230,42 @@ function start_timer()
     worker_object.postMessage(send);
     worker_object.onmessage=(e)=>{
         temp_sec=e.data[1];
-        display_time(pomodoro_min_div,e.data[0]);
+      if(num===1)
+      {
+        display_time(pomodoro_min_div,e.data[0]); 
+        console.log(e.data[0]);
+        num=2;
+      }
+    if(e.data[1]==0)
+    {
         display_time(pomodoro_sec_div,e.data[1]);
+
+    }
+    if(e.data[0]!==-1)
+    {
+
+        display_time(pomodoro_sec_div,e.data[1]);
+        setTimeout(()=>{
+            display_time(pomodoro_min_div,e.data[0]);
+        }, 1000);
+        
+    }
+
+
+
         if((e.data[0]== -1)&&(e.data[1]==0))
         {
             temp_sec=60;
             update_timer();
             sound_time_over();
-       stop_timer();
+            num=1;
+            stop_timer();
         }
+
+   
+
+       
+
 
 
     }

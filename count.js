@@ -7,18 +7,23 @@ sec--;
 if(sec==0)
 {
     min--;
+    let d=[min,sec];
+postMessage(d);
     sec=60;
     if(min<0)
     {
         sec=0;
-        let d=[min,sec];
+         d=[min,sec];
         postMessage(d);
     }
     
 }
+else
+{
+    let d=[min,sec];
+    postMessage(d); 
+}
 
-let d=[min,sec];
-postMessage(d);
 
 
 
