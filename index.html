@@ -315,8 +315,8 @@
 </div>
 
 <div class="breaks_buttons">
-  <i class="fas breaks_i_tag fa-check" title="Start Break" id="start_break_button"></i>
-  <i class="fas breaks_i_tag fa-times " title="Cancel Break" id="cancel_break_button"></i>
+  <i class=" breaks_i_tag " title="Start Break" id="start_break_button">START</i>
+  <i class=" breaks_i_tag  " title="Cancel Break" id="cancel_break_button">CANCEL</i>
 </div>
 
 </div>
@@ -328,7 +328,7 @@
 
 <!-- setting box starting  -->
 
-    <div style="opacity: 0;z-index: -23423432;" class="settingparent">
+    <div style=" opacity: 0;z-index: -23423432;" class="settingparent">
 
         <div class="setting_box">
 
@@ -350,9 +350,12 @@
             <input id="setting_long_break_minutes"  min="1" max="60" oninput="validity.valid||(value='');" type="number" value='15' class="setting_time">
         </div>
             </div>
-        <button id="settingbtn" >
-            OK
-        </button>
+            <div class="setting_btn_parent_div" >
+
+              <button id="settingbtn" >
+                OK
+              </button>
+            </div>
         </div>
         </div>
         <!-- setting box ending  -->
@@ -363,7 +366,7 @@
 
 
 
-    <div class="container">
+    <div  class=" container">
       <i id="reload_page" class="fas fa-sync"></i>
       <span id="setting">
           <img src="./icons8-settings.svg" alt="">
@@ -383,7 +386,7 @@
 
             <div class="  _3div" id="pomodoro">
 <div class="timer">
-    <span  id="pomodoro_min" class="min"></span>
+    <span  id="pomodoro_min" class="min">00</span>
     <span  class="colon">:</span>
     <span id="pomodoro_sec"  class="sec">00</span>
 </div>

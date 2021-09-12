@@ -6,11 +6,7 @@
     list-style: none;
 
 }
-html,body{
-overflow-x: hidden;
-max-width: 100%;
-height: 100%;
-}
+
 
 #setting img{
     width: 30px;
@@ -114,8 +110,8 @@ z-index: -1;
 
 .btn{
     position: relative;
-    width: 49%;
-    height: 20%;
+    width: auto;
+    height: auto;
     font-size: 36px;
     padding: 10px 20px;
     margin: auto;
@@ -188,13 +184,21 @@ border-bottom: 1px solid #ececec29;
 #settingbtn:hover{
     cursor: pointer;
 }
+
+.setting_btn_parent_div
+{
+    height: 20%;
+    width: 100%;
+}
+
 #settingbtn{
  
  position: relative;
-    width: 36%;
+    width: auto;
     // height: 20%;
     // font-size: 36px;
     // padding: 10px 20px;
+    height: auto;
     margin: auto;
     display: block;
     border: none;
@@ -276,7 +280,7 @@ opacity: 0;
 
 }
 .breaks_inside{
-    width: 50%;
+    width: 500px;
     height: 400px;
 padding: 28px;
 transition: 2s;
@@ -362,5 +366,160 @@ background: radial-gradient(#ff0028, #000000);
     &:hover{
 transform: scale(1.1);
         cursor: pointer;
+    }
+}
+
+
+
+// ............................... 
+       // reponsive code starting here 
+// ............................... 
+
+html,body{
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
+}
+// body{
+//     padding: 40px;
+// }
+
+@media only screen and (max-width:670px)
+{
+    .inner{
+        height: 390px;
+        width: 441px;
+    }
+    .min, .sec, .colon {
+        font-size: 130px;
+        color: white;
+    }
+    .btn{
+        font-size: 34px;
+    }
+    .breaks_inside{
+        width: 90%;
+    }
+    .value{
+        font-size: 100px;
+    }
+    .breaks_heading h1{
+        font-size: 30px;
+    }
+}
+@media only screen and (max-width:480px)
+{
+    .inner{
+        height: 390px;
+        width: 350px;
+    }
+    .min, .sec, .colon {
+        font-size: 110px;
+        color: white;
+    }
+    .btn{
+        font-size: 31px;
+    }
+    .setting_heading
+    {
+        height: 10% !important;
+    }
+    .setting_time_head{
+        height: 80% !important;
+
+    }
+}
+@media only screen and (max-width:370px)
+{
+    .inner{
+        height: 390px;
+        width: 300px;
+    }
+    .min, .sec, .colon {
+        font-size: 100px;
+        color: white;
+        
+    }
+    .btn{
+        font-size: 31px;
+    }
+    .setting_box{
+        width: 90% !important;
+
+        height: 80% !important;
+}
+
+.breaks_inside{
+    width: 90%;
+    height: 80%;
+}
+.value{
+    font-size: 90px;
+}
+.breaks_buttons{
+    flex-wrap: wrap;
+}
+.breaks_i_tag {
+    
+    margin: 10px !important;
+}
+
+}
+.value{
+    text-align: center;
+}
+
+.breaks_i_tag {
+    
+font-size: 20px;
+}
+@media only screen and (max-width:320px)
+{
+    .inner{
+        height: 300px;
+        width: 250px;
+    }
+    .min, .sec, .colon {
+        font-size: 90px;
+        color: white;
+        
+    }
+    .btn{
+        font-size: 28px;
+    }
+    .heading{
+        font-size: 30px;
+    }
+}
+
+
+
+@media only screen and (max-width:290px)
+{
+    .inner{
+        height: 270px;
+        width: 200px;
+    }
+    .min, .sec, .colon {
+        font-size: 60px;
+        color: white;
+        
+    }
+    .btn{
+        font-size: 25px;
+    }
+    .heading{
+        font-size: 21px;
+    }
+}
+.setting_time_head{
+    flex-wrap: wrap;
+}
+@media only screen and (max-width:500px)
+{
+    .setting_box{
+              width: 80%;
+
+              height: 70%;
     }
 }
