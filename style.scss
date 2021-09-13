@@ -406,6 +406,15 @@ html,body{
     .breaks_heading h1{
         font-size: 30px;
     }
+    .heading{
+        font-size: 34px ;
+    }
+   #reload_page {
+       left: 3%;
+    }
+}
+#reload_page {
+    top: 3%;
 }
 @media only screen and (max-width:480px)
 {
@@ -427,6 +436,9 @@ html,body{
     .setting_time_head{
         height: 80% !important;
 
+    }
+    .heading{
+        font-size: 30px;
     }
 }
 @media only screen and (max-width:370px)
@@ -488,7 +500,7 @@ font-size: 20px;
         font-size: 28px;
     }
     .heading{
-        font-size: 30px;
+        font-size: 29px;
     }
 }
 
