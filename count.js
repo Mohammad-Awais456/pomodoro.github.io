@@ -1,6 +1,7 @@
 onmessage=(e)=>{
     let sec=e.data[1];
    let min=e.data[0];
+  
 setInterval(()=>{
 
 sec--;

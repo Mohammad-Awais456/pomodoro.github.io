@@ -40,6 +40,7 @@ let start_break_button = document.querySelector("#start_break_button");
 let cancel_break_button = document.querySelector("#cancel_break_button");
 let Breaks_div = document.querySelector(".Breaks");
 let breaks_inside = document.querySelector(".breaks_inside");
+let value_of_break = document.querySelector(".value");
 
 // variables short and long breaks
 
@@ -76,6 +77,124 @@ reload_page.addEventListener("click",()=>{
 
 
 // functions 
+// *************************************
+function set_local_data(d)
+{
+    d=JSON.stringify(d);
+    localStorage.setItem("lap",d);
+}
+// *************************************
+let pomodor_header_heading=document.getElementById("pomodor_header_heading");
+let breaks_heading=document.querySelector(".breaks_heading");
+// *************************************
+function display_break(v)
+{
+    let b=localStorage.getItem("timer_data")
+    if((v==2)||(v==4))
+    {
+             if(b!=null)
+             {
+                 b=JSON.parse(b);
+                 b=b[1];
+                 display_time_break(value_of_break,b);
+
+                 breaks_div_display();
+                 breaks_heading.innerHTML="Short Break";
+                 setTimeout(() => {
+                     
+                     pomodor_header_heading.innerHTML="Short Break";
+                 }, 1000);
+                }
+                else
+                {
+                    
+                    display_time_break(value_of_break,6);
+                 
+                    breaks_heading.innerHTML="Short Break";
+                    setTimeout(() => {
+                        
+                        pomodor_header_heading.innerHTML="Short Break";
+                    }, 1000);
+                 breaks_div_display();
+
+             }
+
+    }
+    else
+    {
+        if(b!=null)
+        {
+            b=JSON.parse(b);
+            b=b[2];
+            console.log(b);
+            display_time_break(value_of_break,b);
+         
+            breaks_heading.innerHTML="long Break";
+            setTimeout(() => {
+                
+                pomodor_header_heading.innerHTML="long Break";
+            }, 1000);
+            breaks_div_display();
+
+           }
+           else
+           {
+          
+            breaks_heading.innerHTML="long Break";
+            setTimeout(() => {
+                
+                pomodor_header_heading.innerHTML="long Break";
+            }, 1000);
+
+            breaks_div_display();
+               
+            display_time_break(value_of_break,15);
+
+        }
+    }
+}
+// *************************************
+function break_manager()
+{
+    let data=localStorage.getItem("lap");
+    if(data!=null)
+    {
+      data=JSON.parse(data);
+      if(data==2)
+      {
+        display_break(data);
+        set_local_data(3);
+      }
+      else if(data==4)
+      {
+        display_break(data);
+        set_local_data(5);
+
+      }
+      else if(data==6)
+      {
+        display_break(data);
+        set_local_data(1);
+    }
+    else
+    {
+        data=data+1;
+          set_local_data(data);
+
+      }
+    }
+    else
+    {
+        set_local_data(3);
+        display_break(2);
+
+    }
+}
+
+
+
+
+// *************************************
 function close_setting_div(){
     setting_box.style.cssText="top:-500%;transition:3s";
     setTimeout(opacity_hider, 1000);
@@ -93,16 +212,18 @@ function breaks_div_display()
 }
 //......................................
 
-function breaks_div_start_btn(){
-click_sound();
-setTimeout(opacity_hider_for_breaks_div, 50);
-
+function lap_generate() {
+    localStorage.setItem("lap",2);
 }
+lap_generate();
 
 function breaks_div_cancel_btn(){
 click_sound();
 setTimeout(opacity_hider_for_breaks_div, 10);
-
+setTimeout(() => {
+    
+    pomodor_header_heading.innerHTML="Work Time";
+}, 2000);
 }
 // ....................................
 function sound_time_over()
@@ -167,6 +288,18 @@ function display_time(location,val)
 
     }
 }
+function display_time_break(location,val)
+{
+    if(val<10)
+    {
+        location.innerHTML=val+" min";
+    }
+    else
+    {
+        location.innerHTML=val+" min";
+
+    }
+}
 //.......................................\ 
 function update_timer()
 {
@@ -216,15 +349,39 @@ function stop_timer()
 {
     worker_object.terminate();
     worker_object=undefined;
+ 
+        
+        pomodor_header_heading.innerHTML="Work Time";
    
+   break_manager();
 }
+//******************************** */
+function breaks_div_start_btn(){
+
+   setTimeout(() => {
+    let vv=value_of_break.innerHTML;
+    vv=vv.slice(0,2);
+console.log(vv);
+    timer_data[0]=+(vv);
+    display_time(pomodoro_min_div,timer_data[0])
+
+        click_sound();
+    setTimeout(opacity_hider_for_breaks_div, 50);
+    admin();
+   }, 3000);
+    
+    
+    }
 //******************************** */
 function start_timer()
 {
     let send;
     
     worker_object= new Worker("count.js");
+
     console.log(timer_data);
+
+
 if(timer_data==null){
 
      send=[26,temp_sec];
@@ -240,7 +397,6 @@ if(timer_data==null){
       if(num===1)
       {
         display_time(pomodoro_min_div,e.data[0]); 
-        console.log(e.data[0]);
         num=2;
       }
     if(e.data[1]==0)
