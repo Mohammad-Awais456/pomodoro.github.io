@@ -68,6 +68,7 @@ close.addEventListener("click",close_setting_div);
 reload_page.addEventListener("click",()=>{
 
     history.go();
+    lap_generate();
 });
 
 
@@ -215,7 +216,7 @@ function breaks_div_display()
 function lap_generate() {
     localStorage.setItem("lap",2);
 }
-lap_generate();
+
 
 function breaks_div_cancel_btn(){
 click_sound();
