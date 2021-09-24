@@ -355,6 +355,16 @@ function stop_timer()
    
    break_manager();
 }
+function terminate_timer()
+{
+    worker_object.terminate();
+    worker_object=undefined;
+ 
+        
+        pomodor_header_heading.innerHTML="Work Time";
+   
+ 
+}
 //******************************** */
 function breaks_div_start_btn(){
 
@@ -451,7 +461,7 @@ function admin()
     else
     {
         main_button.innerHTML="START";
-        stop_timer();
+        terminate_timer();
         // alert("Stop");
 
     }
